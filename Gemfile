@@ -78,3 +78,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'concurrent-ruby', '1.3.4'
