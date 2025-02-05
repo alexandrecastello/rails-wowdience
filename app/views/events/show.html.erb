@@ -25,22 +25,6 @@
       <strong>Comment:</strong>
       <%= user_review.comment %>
     </p>
-    <%= link_to 'Edit Review', '#', class: 'btn btn-primary', data: { bs_toggle: 'collapse', bs_target: '#editReviewForm' } %>
-    <div id="editReviewForm" class="collapse mt-3">
-      <%= form_with(model: [ @event, user_review ], local: true) do |form| %>
-        <div class="field">
-          <%= form.label :rating %>
-          <%= form.number_field :rating, step: 1, in: 0..10, value: user_review.rating %>
-        </div>
-        <div class="field">
-          <%= form.label :comment %>
-          <%= form.text_area :comment, value: user_review.comment %>
-        </div>
-        <div class="actions">
-          <%= form.submit 'Update Review' %>
-        </div>
-      <% end %>
-    </div>
   <% else %>
     <h2>Leave a Review</h2>
     <%= form_with(model: [ @event, @event.reviews.build ], local: true) do |form| %>
