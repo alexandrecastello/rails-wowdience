@@ -1,0 +1,66 @@
+<h1><%= @event.name %></h1>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.start_date.strftime("%d/%m/%Y") %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @location.name %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
+
+<% if user_signed_in? %>
+  <% user_review = @event.reviews.find_by(user: current_user) %>
+  <% if user_review %>
+    <h2>Your Review</h2>
+    <p>
+      <strong>Rating:</strong>
+      <%= user_review.rating %>
+    </p>
+    <p>
+      <strong>Comment:</strong>
+      <%= user_review.comment %>
+    </p>
+    <%= link_to 'Edit Review', '#', class: 'btn btn-primary', data: { bs_toggle: 'collapse', bs_target: '#editReviewForm' } %>
+    <div id="editReviewForm" class="collapse mt-3">
+      <%= form_with(model: [ @event, user_review ], local: true) do |form| %>
+        <div class="field">
+          <%= form.label :rating %>
+          <%= form.number_field :rating, step: 1, in: 0..10, value: user_review.rating %>
+        </div>
+        <div class="field">
+          <%= form.label :comment %>
+          <%= form.text_area :comment, value: user_review.comment %>
+        </div>
+        <div class="actions">
+          <%= form.submit 'Update Review' %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <h2>Leave a Review</h2>
+    <%= form_with(model: [ @event, @event.reviews.build ], local: true) do |form| %>
+      <div class="field">
+        <%= form.label :rating %>
+        <%= form.number_field :rating, step: 1, in: 0..10 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :comment %>
+        <%= form.text_area :comment %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Submit Review' %>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>
+    Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to leave a review.
+  </p>
+<% end %>
