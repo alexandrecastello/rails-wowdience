@@ -3,6 +3,6 @@ class Event < ApplicationRecord
   belongs_to :location
   has_many :event_artists
   has_many :artists, through: :event_artists
-  has_namy :reviews
-  has_many :users, through: :reviews, alias: :reviewers
+  has_many :reviews
+  has_many :users, through: :reviews
 end
