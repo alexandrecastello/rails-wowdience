@@ -1,50 +1,230 @@
-<h1><%= @event.name %></h1>
+<!-- Event Hero Section -->
+<div class="event-detail-hero">
+  <div class="container">
+    <div class="row align-items-center py-5">
+      <div class="col-lg-8">
+        <nav aria-label="breadcrumb" class="mb-3">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to t('navigation.events'), events_path, class: 'text-white-50' %></li>
+            <li class="breadcrumb-item active text-white" aria-current="page"><%= t('events.event_details') %></li>
+          </ol>
+        </nav>
+        <h1 class="display-4 fw-bold text-white mb-3"><%= @event.name %></h1>
+        <div class="event-meta text-white mb-4">
+          <div class="d-flex align-items-center mb-2">
+            <i class="fas fa-calendar-alt me-3 fa-lg"></i>
+            <span class="fs-5"><%= @event.start_date.strftime("%A, %B %d, %Y") %></span>
+          </div>
+          <div class="d-flex align-items-center mb-3">
+            <i class="fas fa-map-marker-alt me-3 fa-lg"></i>
+            <span class="fs-5"><%= @location.name %></span>
+          </div>
+        </div>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event.start_date.strftime("%d/%m/%Y") %>
-</p>
+        <% if @event.total_reviews > 0 %>
+          <div class="rating-hero mb-4">
+            <div class="stars mb-2">
+              <%= star_rating(@event.average_rating, 'large') %>
+            </div>
+            <p class="text-white-50 mb-0">
+              <%= @event.total_reviews %> <%= @event.total_reviews == 1 ? t('events.based_on_reviews') : t('events.based_on_reviews_plural') %>
+            </p>
+          </div>
+        <% else %>
+          <div class="no-reviews-hero">
+            <i class="fas fa-star fa-2x text-white-50 mb-2"></i>
+            <p class="text-white-50 mb-0"><%= t('events.still_no_reviews_hero') %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-lg-4 text-center">
+        <i class="fas fa-music fa-5x text-white opacity-75"></i>
+      </div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Location:</strong>
-  <%= @location.name %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <!-- Event Actions -->
+      <div class="event-actions mb-4">
+        <div class="d-flex gap-3">
+          <% if user_signed_in? %>
+            <%= link_to edit_event_path(@event), class: 'btn btn-outline-primary' do %>
+              <i class="fas fa-edit me-2"></i><%= t('events.edit_event') %>
+            <% end %>
+          <% end %>
+          <%= link_to events_path, class: 'btn btn-outline-secondary' do %>
+            <i class="fas fa-arrow-left me-2"></i><%= t('navigation.back') %> <%= t('navigation.events').downcase %>
+          <% end %>
+        </div>
+      </div>
 
 <% if user_signed_in? %>
   <% user_review = @event.reviews.find_by(user: current_user) %>
   <% if user_review %>
-    <h2>Your Review</h2>
-    <p>
-      <strong>Rating:</strong>
-      <%= user_review.rating %>
-    </p>
-    <p>
-      <strong>Comment:</strong>
-      <%= user_review.comment %>
-    </p>
+    <div class="card review-form-card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0"><%= t('reviews.your_review') %></h4>
+        <button class="btn btn-sm btn-outline-light" onclick="toggleEditForm()"><%= t('reviews.edit_review') %></button>
+      </div>
+      <div class="card-body">
+        <div id="review-display">
+          <div class="rating mb-2">
+            <%= star_rating(user_review.rating, 'medium') %>
+            <span class="ms-2"><strong><%= user_review.rating %>/5</strong></span>
+          </div>
+          <div class="long-text" id="user-review-<%= user_review.id %>">
+            <p class="card-text"><%= user_review.comment %></p>
+          </div>
+          <% if user_review.comment.length > 200 %>
+            <button class="read-more-btn" onclick="toggleReview('user-review-<%= user_review.id %>')">
+              <span id="toggle-user-review-<%= user_review.id %>"><%= t('reviews.read_more') %></span>
+            </button>
+          <% end %>
+          <small class="text-muted"><%= t('reviews.reviewed_on') %> <%= user_review.created_at.strftime("%d/%m/%Y") %></small>
+        </div>
+
+        <div id="editReviewForm" class="mt-3" style="display: none;">
+          <%= form_with(model: [ @event, user_review ], local: true) do |form| %>
+            <% if user_review.errors.any? %>
+              <div class="alert alert-danger">
+                <ul class="mb-0">
+                  <% user_review.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :rating, t('reviews.rating'), class: "form-label fw-semibold" %>
+              <%= form.number_field :rating, step: 0.5, min: 0.5, max: 5.0, value: user_review.rating, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :comment, t('reviews.comment'), class: "form-label fw-semibold" %>
+              <%= form.text_area :comment, value: user_review.comment, class: "form-control", rows: 4 %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit t('reviews.update_review'), class: 'btn btn-primary' %>
+              <button type="button" class="btn btn-secondary" onclick="toggleEditForm()"><%= t('navigation.cancel') %></button>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% else %>
-    <h2>Leave a Review</h2>
-    <%= form_with(model: [ @event, @event.reviews.build ], local: true) do |form| %>
-      <div class="field">
-        <%= form.label :rating %>
-        <%= form.number_field :rating, step: 1, in: 0..10 %>
+    <div class="card review-form-card">
+      <div class="card-header">
+        <h4 class="mb-0"><%= t('reviews.leave_review') %></h4>
       </div>
+      <div class="card-body">
+        <%= form_with(model: [ @event, @event.reviews.build ], local: true) do |form| %>
+          <% if @event.reviews.build.errors.any? %>
+            <div class="alert alert-danger">
+              <ul class="mb-0">
+                <% @event.reviews.build.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-      <div class="field">
-        <%= form.label :comment %>
-        <%= form.text_area :comment %>
-      </div>
+          <div class="mb-3">
+            <%= form.label :rating, t('reviews.rating'), class: "form-label fw-semibold" %>
+            <%= form.number_field :rating, step: 0.5, min: 0.5, max: 5.0, class: "form-control", placeholder: t('reviews.rating_placeholder') %>
+            <div class="form-text"><%= t('reviews.rating_help') %></div>
+          </div>
 
-      <div class="actions">
-        <%= form.submit 'Submit Review' %>
+          <div class="mb-3">
+            <%= form.label :comment, t('reviews.comment'), class: "form-label fw-semibold" %>
+            <%= form.text_area :comment, class: "form-control", rows: 4, placeholder: t('reviews.comment_placeholder') %>
+            <div class="form-text"><%= t('reviews.comment_help') %></div>
+          </div>
+
+          <div class="actions">
+            <%= form.submit t('reviews.submit_review'), class: 'btn btn-primary' %>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
   <% end %>
 <% else %>
-  <p>
-    Please <%= link_to 'sign in', new_user_session_path %> or <%= link_to 'sign up', new_user_registration_path %> to leave a review.
-  </p>
+  <div class="alert alert-info">
+    <p class="mb-0">
+      <%= t('reviews.login_to_review') %> <%= link_to t('reviews.login'), new_user_session_path %> ou <%= link_to t('reviews.register'), new_user_registration_path %>.
+    </p>
+  </div>
 <% end %>
+
+<!-- All Reviews Section -->
+<% if @event.reviews.any? %>
+  <div class="reviews-section mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="mb-0">
+        <i class="fas fa-comments text-primary me-2"></i>
+        <%= t('reviews.all_reviews') %>
+      </h3>
+      <span class="badge bg-primary fs-6"><%= @event.total_reviews %> <%= @event.total_reviews == 1 ? t('events.based_on_reviews') : t('events.based_on_reviews_plural') %></span>
+    </div>
+    <div class="reviews-list">
+      <% @event.reviews.includes(:user).order(created_at: :desc).each do |review| %>
+        <div class="review-card card mb-4 shadow-sm border-0">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div class="d-flex align-items-center">
+                <div class="user-avatar me-3">
+                  <i class="fas fa-user-circle fa-2x text-primary"></i>
+                </div>
+                <div>
+                  <h6 class="card-title mb-1"><%= review.user.first_name %> <%= review.user.last_name %></h6>
+                  <small class="text-muted">
+                    <i class="fas fa-clock me-1"></i>
+                    <%= review.created_at.strftime("%B %d, %Y") %>
+                  </small>
+                </div>
+              </div>
+              <div class="rating-display">
+                <div class="rating mb-1">
+                  <%= star_rating(review.rating, 'medium') %>
+                </div>
+                <span class="fw-bold text-primary"><%= review.rating %>/5</span>
+              </div>
+            </div>
+            <div class="review-content">
+              <div class="long-text" id="review-<%= review.id %>">
+                <p class="card-text mb-0"><%= review.comment %></p>
+              </div>
+              <% if review.comment.length > 200 %>
+                <button class="read-more-btn" onclick="toggleReview('review-<%= review.id %>')">
+                  <span id="toggle-review-<%= review.id %>"><%= t('reviews.read_more') %></span>
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleEditForm() {
+    const reviewDisplay = document.getElementById('review-display');
+    const editForm = document.getElementById('editReviewForm');
+
+    if (editForm.style.display === 'none') {
+      reviewDisplay.style.display = 'none';
+      editForm.style.display = 'block';
+    } else {
+      reviewDisplay.style.display = 'block';
+      editForm.style.display = 'none';
+    }
+  }
+</script>

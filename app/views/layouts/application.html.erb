@@ -1,18 +1,50 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsWowdience</title>
+    <title>WoWdience</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One:wght@400&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body class="d-flex flex-column min-vh-100">
+    <% unless controller_name == 'home' && action_name == 'index' %>
+      <%= render "shared/navbar" %>
+    <% end %>
+    <%= render "shared/flashes" %>
 
     <%= yield %>
+    <%= render "shared/footer" %>
+
+    <!-- Bootstrap 5 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Ensure Bootstrap alerts work properly -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Bootstrap alerts
+        var alertList = document.querySelectorAll('.alert');
+        var alerts = alertList.map(function (alertNode) {
+          return new bootstrap.Alert(alertNode);
+        });
+
+        // Auto-dismiss alerts after 5 seconds
+        alertList.forEach(function(alert) {
+          setTimeout(function() {
+            var bsAlert = new bootstrap.Alert(alert);
+            bsAlert.close();
+          }, 5000);
+        });
+      });
+    </script>
   </body>
 </html>

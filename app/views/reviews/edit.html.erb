@@ -1,0 +1,108 @@
+<!-- Seção Hero Editar Avaliação -->
+<div class="devise-hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-white mb-3 hero-title">Editar Avaliação</h1>
+          <p class="lead text-white-50">Atualize sua avaliação para <%= @review.event.name %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Card de Informações do Evento -->
+      <div class="card shadow-lg border-0 mb-4">
+        <div class="card-header bg-gradient-primary text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-calendar me-2"></i>
+            <%= @review.event.name %>
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-2">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                <strong>Date:</strong> <%= @review.event.start_date.strftime("%A, %B %d, %Y") %>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2">
+                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                <strong>Location:</strong> <%= @review.event.location.name %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulário de Edição da Avaliação -->
+      <div class="card shadow-lg border-0">
+        <div class="card-header bg-gradient-success text-white text-center">
+          <h4 class="mb-0">
+            <i class="fas fa-edit me-2"></i>
+            Edite Sua Avaliação
+          </h4>
+        </div>
+        <div class="card-body p-4">
+          <%= form_with model: @review, local: true, class: 'needs-validation', novalidate: true do |form| %>
+
+            <% if @review.errors.any? %>
+              <div class="alert alert-danger">
+                <h6 class="alert-heading">
+                  <i class="fas fa-exclamation-triangle me-2"></i>
+                  <%= pluralize(@review.errors.count, "erro", "erros") %> impediu esta avaliação de ser salva:
+                </h6>
+                <ul class="mb-0">
+                  <% @review.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-star me-2 text-warning"></i>
+                Nota (0.5 - 5.0)
+              </label>
+              <div class="rating-input">
+                <%= form.number_field :rating,
+                    class: 'form-control form-control-lg',
+                    min: 0.5, max: 5.0, step: 0.5,
+                    placeholder: 'Avalie de 0.5 (ruim) a 5.0 (excelente)',
+                    required: true %>
+              </div>
+              <div class="form-text">Avalie este evento de 0.5 (ruim) a 5.0 (excelente)</div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-semibold">
+                <i class="fas fa-comment me-2 text-primary"></i>
+                Sua Avaliação
+              </label>
+              <%= form.text_area :comment,
+                  class: 'form-control',
+                  rows: 6,
+                  placeholder: 'Compartilhe sua experiência detalhada com este evento. O que você gostou? O que poderia ser melhorado?',
+                  required: true %>
+              <div class="form-text">Mínimo de 10 caracteres necessários</div>
+            </div>
+
+            <div class="form-actions d-flex justify-content-between">
+              <%= link_to 'Cancelar', @review, class: 'btn btn-outline-secondary btn-lg' %>
+              <%= form.submit 'Atualizar Avaliação',
+                  class: 'btn btn-success btn-lg',
+                  data: { disable_with: 'Updating...' } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

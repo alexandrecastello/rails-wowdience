@@ -1,5 +1,22 @@
-<h1>Edit Event</h1>
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <div class="row align-items-center py-4">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><%= link_to 'Events', events_path %></li>
+            <li class="breadcrumb-item"><%= link_to @event.name, @event %></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit</li>
+          </ol>
+        </nav>
+        <h1 class="display-5 fw-bold mb-0">Edit Event</h1>
+        <p class="lead text-muted">Update your event information</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', event: @event %>
-
-<%= link_to 'Back', events_path %>
+<div class="container mt-4">
+  <%= render 'form', event: @event %>
+</div>

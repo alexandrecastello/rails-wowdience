@@ -1,0 +1,104 @@
+<!-- Seção Hero Avaliação Enviada -->
+<div class="devise-hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-white mb-3 hero-title">Avaliação Enviada!</h1>
+          <p class="lead text-white-50">Thank you for sharing your experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Card da Avaliação -->
+      <div class="card shadow-lg border-0 mb-4">
+        <div class="card-header bg-gradient-success text-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="fas fa-check-circle me-2"></i>
+              Sua Avaliação
+            </h5>
+            <div class="d-flex gap-2">
+              <%= link_to 'Editar', edit_review_path(@review), class: 'btn btn-outline-light btn-sm' %>
+              <%= link_to 'Excluir', @review, method: :delete,
+                  data: { confirm: 'Are you sure?' },
+                  class: 'btn btn-outline-danger btn-sm' %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <h6 class="text-muted mb-1">Event</h6>
+              <h5 class="mb-0">
+                <%= link_to @review.event.name, @review.event, class: 'text-decoration-none' %>
+              </h5>
+            </div>
+            <div class="col-md-6">
+              <h6 class="text-muted mb-1">Sua Nota</h6>
+              <div class="rating-display">
+                <%= star_rating(@review.rating, 'large') %>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <h6 class="text-muted mb-1">Seu Comentário</h6>
+            <p class="mb-0"><%= @review.comment %></p>
+          </div>
+
+          <div class="text-muted small">
+            <i class="fas fa-clock me-1"></i>
+            Enviado em <%= @review.created_at.strftime("%d/%m/%Y às %H:%M") %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Details -->
+      <div class="card shadow-lg border-0 mb-4">
+        <div class="card-header bg-gradient-primary text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-calendar me-2"></i>
+            Event Details
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-2">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                <strong>Date:</strong> <%= @review.event.start_date.strftime("%A, %B %d, %Y") %>
+              </p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-2">
+                <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                <strong>Location:</strong> <%= @review.event.location.name %>
+              </p>
+            </div>
+          </div>
+          <% if @review.event.description.present? %>
+            <p class="mb-0">
+              <i class="fas fa-info-circle text-primary me-2"></i>
+              <strong>Description:</strong> <%= @review.event.description %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="text-center">
+        <div class="d-flex justify-content-center gap-3">
+          <%= link_to 'Adicionar Outra Avaliação', new_review_step1_path, class: 'btn btn-primary btn-lg' %>
+          <%= link_to 'Ver Todas as Minhas Avaliações', reviews_path, class: 'btn btn-outline-primary btn-lg' %>
+          <%= link_to 'Browse Events', events_path, class: 'btn btn-outline-secondary btn-lg' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

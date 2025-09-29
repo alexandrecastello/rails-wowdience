@@ -1,18 +1,58 @@
-<h2>Forgot your password?</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
+<!-- Password Reset Hero Section -->
+<div class="devise-hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-white mb-3 hero-title">Esqueceu a Senha?</h1>
+          <p class="lead text-white-50">Sem problemas! Digite seu email e enviaremos instruções de redefinição</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="devise-form-container">
+        <div class="card shadow-lg border-0">
+          <div class="card-header bg-gradient-primary text-white text-center">
+            <h4 class="mb-0 section-title">
+              <i class="fas fa-key me-2"></i>
+              Redefinir Senha
+            </h4>
+          </div>
+          <div class="card-body p-4">
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'needs-validation', novalidate: true }) do |f| %>
+              <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <div class="mb-4">
+                  <%= f.label :email, "Endereço de Email", class: "form-label fw-semibold" %>
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              label: false,
+                              placeholder: 'Digite seu endereço de email',
+                              wrapper_html: { class: '' },
+                              input_html: { class: 'form-control form-control-lg', autocomplete: "email" } %>
+                </div>
+              </div>
+
+              <div class="form-actions d-grid">
+                <%= f.button :submit, "Enviar Instruções de Redefinição",
+                    class: 'btn btn-primary btn-lg',
+                    data: { disable_with: 'Enviando...' } %>
+              </div>
+            <% end %>
+
+            <div class="text-center mt-4">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

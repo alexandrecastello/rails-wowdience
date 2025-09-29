@@ -1,0 +1,139 @@
+<!-- Seção Hero Passo 1 -->
+<div class="devise-hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-white mb-3 hero-title">Adicionar Nova Avaliação</h1>
+          <p class="lead text-white-50">Passo 1: Escolha um evento para avaliar ou crie um novo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Passos do Progresso -->
+      <div class="steps-progress mb-5">
+        <div class="d-flex justify-content-center">
+          <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-label">Escolher Evento</div>
+          </div>
+          <div class="step-line"></div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-label">Escrever Avaliação</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opções de Escolha de Evento -->
+      <div class="row">
+        <!-- Opção 1: Selecionar Evento Existente -->
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 shadow-lg border-0">
+            <div class="card-header bg-gradient-primary text-white text-center">
+              <h4 class="mb-0">
+                <i class="fas fa-search me-2"></i>
+                Selecionar Evento Existente
+              </h4>
+            </div>
+            <div class="card-body p-4">
+              <p class="text-muted mb-4">Escolha entre eventos que já existem em nossa base de dados</p>
+
+              <% if @events.any? %>
+                <div class="event-selection">
+                  <% @events.each do |event| %>
+                    <%= form_with url: new_review_step2_path, method: :get, local: true, class: 'mb-3' do |form| %>
+                      <%= form.hidden_field :event_id, value: event.id %>
+                      <div class="event-option-card p-3 border rounded hover-card">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <h6 class="mb-1"><%= event.name %></h6>
+                            <small class="text-muted">
+                              <i class="fas fa-calendar me-1"></i>
+                              <%= event.start_date.strftime("%d/%m/%Y") %>
+                              <i class="fas fa-map-marker-alt ms-2 me-1"></i>
+                              <%= event.location.name %>
+                            </small>
+                          </div>
+                          <%= form.submit 'Selecionar', class: 'btn btn-outline-primary btn-sm' %>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="text-center py-4">
+                  <i class="fas fa-calendar-plus fa-3x text-muted mb-3"></i>
+                  <p class="text-muted">Nenhum evento disponível. Crie um novo!</p>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Opção 2: Criar Novo Evento -->
+        <div class="col-lg-6 mb-4">
+          <div class="card h-100 shadow-lg border-0">
+            <div class="card-header bg-gradient-success text-white text-center">
+              <h4 class="mb-0">
+                <i class="fas fa-plus me-2"></i>
+                Criar Novo Evento
+              </h4>
+            </div>
+            <div class="card-body p-4">
+              <p class="text-muted mb-4">Crie um novo evento e depois avalie-o</p>
+
+              <%= form_with model: @event, url: new_review_step2_path, method: :get, local: true, class: 'needs-validation', novalidate: true do |form| %>
+                <div class="mb-3">
+                  <%= form.text_field :name,
+                      class: 'form-control form-control-lg',
+                      placeholder: 'Nome do evento',
+                      required: true %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.date_field :start_date,
+                      class: 'form-control form-control-lg',
+                      required: true %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.text_area :description,
+                      class: 'form-control',
+                      placeholder: 'Descrição do evento (opcional)',
+                      rows: 3 %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.select :location_id,
+                      options_from_collection_for_select(Location.all, :id, :name),
+                      { prompt: 'Selecionar local' },
+                      { class: 'form-select form-select-lg' } %>
+                </div>
+
+                <div class="mb-3">
+                  <%= form.text_field :location_name,
+                      class: 'form-control form-control-lg',
+                      placeholder: 'Or create new location' %>
+                </div>
+
+                <div class="d-grid">
+                  <%= form.submit 'Criar Evento e Continuar', class: 'btn btn-success btn-lg' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <%= link_to 'Voltar aos Eventos', events_path, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

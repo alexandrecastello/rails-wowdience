@@ -1,0 +1,183 @@
+# Arquivos no diretório config/locales são usados para internacionalização
+# e são carregados automaticamente pelo Rails. Se você quiser usar locales diferentes
+# do inglês, adicione os arquivos necessários neste diretório.
+#
+# Para usar os locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# Nas views, isso é aliased para apenas `t`:
+#
+#     <%= t("hello") %>
+#
+# Para usar um locale diferente, defina-o com `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# Isso usaria as informações em config/locales/es.yml.
+#
+# As seguintes chaves devem ser escapadas, caso contrário não serão recuperadas
+# pelo backend I18n padrão:
+#
+# true, false, on, off, yes, no
+#
+# Em vez disso, envolva-as com aspas simples.
+#
+# pt-BR:
+#   "true": "foo"
+#
+# Para saber mais, leia o guia de Internacionalização do Rails
+# disponível em https://guides.rubyonrails.org/i18n.html.
+
+pt-BR:
+  hello: "Olá mundo"
+
+  # Date and time translations
+  date:
+    order:
+      - :day
+      - :month
+      - :year
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %b"
+      long: "%d de %B de %Y"
+    day_names: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"]
+    abbr_day_names: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"]
+    month_names: [null, "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+    abbr_month_names: [null, "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
+      short: "%d/%m/%Y %H:%M"
+      long: "%d de %B de %Y às %H:%M"
+    am: "AM"
+    pm: "PM"
+
+  # Mensagens de erro personalizadas
+  errors:
+    messages:
+      not_saved:
+        one: "1 erro impediu este %{resource} de ser salvo:"
+        other: "%{count} erros impediram este %{resource} de ser salvo:"
+
+  # Traduções da aplicação
+  app:
+    name: "Wowdience"
+    tagline: "Descubra eventos incríveis e compartilhe suas experiências"
+
+  # Navegação
+  navigation:
+    events: "Eventos"
+    add_review: "Adicionar Avaliação"
+    my_reviews: "Minhas Avaliações"
+    login: "Entrar"
+    register: "Cadastrar-se"
+    edit_profile: "Editar Perfil"
+    logout: "Sair"
+    back: "Voltar"
+    cancel: "Cancelar"
+    save: "Salvar"
+    edit: "Editar"
+    delete: "Excluir"
+    create: "Criar"
+    update: "Atualizar"
+    view_details: "Ver Detalhes"
+
+  # Página inicial
+  home:
+    welcome: "Bem-vindo ao Wowdience"
+    description: "Descubra eventos incríveis e compartilhe suas experiências com a comunidade. Avalie shows, leia resenhas e encontre sua próxima experiência inesquecível."
+    explore_events: "Explorar Eventos"
+    add_review: "Adicionar Avaliação"
+    register: "Cadastrar-se"
+
+  # Eventos
+  events:
+    title: "Descubra Eventos Incríveis"
+    subtitle: "Encontre os melhores shows, concertos e festivais. Leia avaliações de pessoas reais e compartilhe suas próprias experiências."
+    share_experience: "Compartilhe uma experiência"
+    all_events: "Todos os Eventos"
+    event_details: "Detalhes do Evento"
+    create_event: "Criar Evento"
+    edit_event: "Editar Evento"
+    new_event: "Criar Novo Evento"
+    no_events: "Nenhum evento encontrado"
+    no_events_message: "Seja o primeiro a criar um evento incrível e compartilhe com a comunidade!"
+    create_first_event: "Criar Seu Primeiro Evento"
+    register_to_create: "Cadastre-se para Criar Eventos"
+    event_count: "evento disponível"
+    event_count_plural: "eventos disponíveis"
+    still_no_reviews: "Ainda sem avaliações"
+    based_on_reviews: "avaliação"
+    based_on_reviews_plural: "avaliações"
+    still_no_reviews_hero: "Ainda sem avaliações - seja o primeiro a avaliar!"
+
+  # Formulário de eventos
+  events_form:
+    event_name: "Nome do Evento"
+    event_name_placeholder: "Digite o nome do seu evento"
+    event_date: "Data do Evento"
+    event_location: "Localização do Evento"
+    select_existing_location: "Selecione uma localização existente"
+    or_create_new_location: "Ou crie uma nova localização"
+    event_description: "Descrição do Evento"
+    event_description_placeholder: "Descreva seu evento..."
+    saving: "Salvando..."
+
+  # Avaliações
+  reviews:
+    add_review: "Adicionar Nova Avaliação"
+    step1_title: "Passo 1: Escolha um evento para avaliar ou crie um novo"
+    step2_title: "Passo 2: Escreva sua avaliação"
+    choose_event: "Escolher Evento"
+    write_review: "Escrever Avaliação"
+    your_review: "Sua Avaliação"
+    leave_review: "Deixe uma Avaliação"
+    all_reviews: "Todas as Avaliações"
+    rating: "Nota (0.5-5.0)"
+    rating_placeholder: "Digite nota de 0.5 a 5.0"
+    rating_help: "Avalie este evento de 0.5 (ruim) a 5.0 (excelente)"
+    comment: "Sua Avaliação"
+    comment_placeholder: "Compartilhe sua experiência com este evento..."
+    comment_help: "Mínimo de 10 caracteres necessários"
+    submit_review: "Enviar Avaliação"
+    update_review: "Atualizar Avaliação"
+    edit_review: "Editar"
+    read_more: "Ler mais"
+    read_less: "Ler menos"
+    reviewed_on: "Avaliado em"
+    login_to_review: "Por favor, faça login ou cadastre-se para deixar uma avaliação."
+    login: "faça login"
+    register: "cadastre-se"
+
+  # Alternância de idioma
+  language:
+    current: "Idioma Atual"
+    switch_to: "Alterar para"
+    portuguese: "Português"
+    english: "English"
+
+  # Modelos
+  activerecord:
+    models:
+      event: "Evento"
+      review: "Avaliação"
+      user: "Usuário"
+      location: "Localização"
+      artist: "Artista"
+    attributes:
+      event:
+        name: "Nome do Evento"
+        start_date: "Data do Evento"
+        description: "Descrição"
+        location: "Localização"
+      review:
+        rating: "Nota"
+        comment: "Comentário"
+      user:
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        email: "E-mail"
+        phone: "Telefone"

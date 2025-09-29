@@ -5,7 +5,1186 @@
 
 // External libraries
 @import "bootstrap";
+
+// Tailwind CSS utilities (copied from compiled tailwind.css)
+.flex { display: flex; }
+.items-center { align-items: center; }
+.space-x-1 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.25rem; }
+.w-4 { width: 1rem; }
+.h-4 { height: 1rem; }
+.w-5 { width: 1.25rem; }
+.h-5 { height: 1.25rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inline-block { display: inline-block; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.overflow-hidden { overflow: hidden; }
+.text-yellow-400 { color: #facc15; }
+.text-gray-300 { color: #d1d5db; }
+
+// Global fonts
+:root {
+  --font-titan: 'Titan One', cursive;
+  --font-quicksand: 'Quicksand', sans-serif;
+}
+
+// Typography styles
+h1, h2, h3, h4, h5, h6,
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6,
+.hero-title, .page-title, .section-title {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+// Main content text
+p, span, div, a, button, input, textarea, select,
+.nav-link, .btn, .form-control, .form-label,
+.card-text, .text-muted, .lead {
+  font-family: var(--font-quicksand) !important;
+}
+
+// Special text elements
+.navbar-brand, .footer-brand {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px;
+}
+
+// Button text
+.btn {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+}
+
+// Form elements
+.form-control, .form-label, .form-select {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 400 !important;
+}
+
+// Card titles
+.card-title, .card-header h5, .card-header h6 {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.5px;
+}
+
+// Badge text
+.badge {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+}
+
+// Specific title classes
+.hero-title {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.page-title {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+// Event card titles
+.event-card .card-title {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+// Review titles
+.review-title {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+}
+
+// Navbar brand
+.navbar-brand {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+// Footer brand
+.footer-brand {
+  font-family: var(--font-titan) !important;
+  font-weight: 400 !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+// Breadcrumb
+.breadcrumb {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 500 !important;
+}
+
+// Small text elements
+small, .small {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 400 !important;
+}
+
+// List items
+.list-unstyled li {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 400 !important;
+}
+
+// Dropdown items
+.dropdown-item {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 500 !important;
+}
+
+// Review comment styling
+.review-content {
+  .card-text {
+    font-family: var(--font-quicksand) !important;
+    font-weight: 400 !important;
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
+// Long text handling
+.long-text {
+  max-height: 200px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    background: linear-gradient(transparent, rgba(255,255,255,0.9));
+    pointer-events: none;
+  }
+
+  &.expanded {
+    max-height: none;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+// Read more/less button
+.read-more-btn {
+  font-family: var(--font-quicksand) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem;
+  color: #667eea;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    color: #5a6fd8;
+  }
+}
+
+// Responsive font adjustments
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+    letter-spacing: 0.8px;
+  }
+
+  .page-title {
+    font-size: 1.5rem !important;
+    letter-spacing: 0.6px;
+  }
+
+  .section-title {
+    font-size: 1.1rem !important;
+    letter-spacing: 0.4px;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem !important;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem !important;
+    letter-spacing: 0.6px;
+  }
+
+  .page-title {
+    font-size: 1.3rem !important;
+    letter-spacing: 0.5px;
+  }
+
+  .section-title {
+    font-size: 1rem !important;
+    letter-spacing: 0.3px;
+  }
+
+  .navbar-brand {
+    font-size: 1rem !important;
+    letter-spacing: 0.8px;
+  }
+}
+
+// Font loading optimization
+@font-face {
+  font-family: 'Titan One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/titanone/v13/mFTzWbsGxbbS_J5cQcjClDgm.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/quicksand/v30/6xKtdSZaM9iE8KbpRA_LJ3z8mH9BOJvgkM0o18a2Rk.woff2') format('woff2');
+}
+
+// Partial star rating styles (5 stars system)
+.stars-container {
+  position: relative;
+  display: inline-block;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.stars-background {
+  color: #e9ecef;
+  white-space: nowrap;
+}
+
+.stars-foreground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #ffc107;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+// Hover effect for stars
+.rating:hover .stars-foreground {
+  color: #ffb300;
+}
+
+// Large stars for hero sections
+.stars-large {
+  font-size: 2rem;
+
+  .stars-background {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .stars-foreground {
+    color: #ffc107;
+  }
+}
+
+// Medium stars for review details
+.stars-medium {
+  font-size: 1.5rem;
+
+  .stars-background {
+    color: #e9ecef;
+  }
+
+  .stars-foreground {
+    color: #ffc107;
+  }
+}
+
+// New star rating system with partial stars
+.star-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+
+  .star {
+    display: inline-block;
+    font-size: inherit;
+    line-height: 1;
+    color: #e9ecef; // Default empty star color
+    transition: color 0.3s ease;
+
+    &.full {
+      color: #ffc107; // Filled star color
+    }
+
+    &.partial {
+      color: #ffc107; // Partial star color
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &.empty {
+      color: #e9ecef; // Empty star color
+    }
+  }
+
+  .star-container {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+
+    .star {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Star rating sizes
+.star-rating-small {
+  font-size: 1rem;
+}
+
+.star-rating-medium {
+  font-size: 1.2rem;
+}
+
+.star-rating-large {
+  font-size: 2rem;
+
+  .star {
+    &.empty {
+      color: rgba(255, 255, 255, 0.3); // Lighter for dark backgrounds
+    }
+  }
+}
+
+// Global background
+body {
+  background-color: #f8f9ff;
+  background-image: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+  min-height: 100vh;
+  font-family: var(--font-quicksand);
+  font-weight: 400;
+}
+
+// Star rating styles
+.star {
+  color: #ffc107;
+  font-size: 1.2em;
+}
+
+.star-empty {
+  color: #e9ecef;
+  font-size: 1.2em;
+}
+
+.rating-section {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #dee2e6;
+}
+
+.reviews-section {
+  border-top: 2px solid #dee2e6;
+  padding-top: 2rem;
+}
+
+// Hero sections
+.events-hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 0;
+}
+
+.event-detail-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 0;
+}
+
+// Event cards
+.event-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2) !important;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.event-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 1.5rem;
+}
+
+// Review cards
+.review-card {
+  transition: transform 0.2s ease;
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15) !important;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Form styles
+.event-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.event-form-container .card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
+}
+
+.event-form-container .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 2rem;
+}
+
+// Review form styles
+.review-form-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.08);
+  transition: all 0.3s ease;
+}
+
+.review-form-card:hover {
+  box-shadow: 0 12px 35px rgba(102, 126, 234, 0.12);
+  transform: translateY(-2px);
+}
+
+.review-form-card .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 1.5rem;
+  color: white;
+}
+
+.review-form-card .card-body {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.review-form-card .form-control {
+  border: 2px solid #e9ecef;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.review-form-card .form-control:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.15);
+  background: white;
+}
+
+.review-form-card .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.review-form-card .btn-primary:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.review-form-card .btn-secondary {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  color: #6c757d;
+  border-radius: 0.75rem;
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.review-form-card .btn-secondary:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+  color: #495057;
+  transform: translateY(-1px);
+}
+
+// Page headers
+.page-header {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-bottom: 1px solid #dee2e6;
+}
+
+// Empty states
+.empty-state {
+  padding: 4rem 2rem;
+}
+
+.empty-state-icon {
+  opacity: 0.5;
+}
+
+// Rating displays
+.rating-hero .stars {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.rating-display {
+  text-align: right;
+}
+
+// Breadcrumbs
+.breadcrumb {
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "›";
+  color: rgba(255,255,255,0.5);
+}
+
+// Form floating labels
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-control:-webkit-autofill ~ label,
+.form-floating > .form-control:-webkit-autofill:hover ~ label,
+.form-floating > .form-control:-webkit-autofill:focus ~ label,
+.form-floating > .form-control:-webkit-autofill:active ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+// Fix autocomplete styling
+.form-floating > .form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.9) inset !important;
+  -webkit-text-fill-color: #212529 !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-floating > .form-control:-webkit-autofill:hover {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+}
+
+.form-floating > .form-control:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+}
+
+// Ensure labels stay in place when autocomplete is active
+.form-floating > .form-control:not(:placeholder-shown) {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.form-floating > .form-control:-webkit-autofill {
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+// Additional autocomplete fixes
+.form-floating > .form-control:-webkit-autofill ~ label {
+  color: #6c757d;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+// Force label positioning for autocompleted fields
+.form-floating > .form-control[data-autocompleted="true"] ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+// Button improvements
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+}
+
+// Card improvements
+.card {
+  border-radius: 0.75rem;
+}
+
+// Devise pages styling
+.devise-hero-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 0;
+  padding: 4rem 0;
+}
+
+.devise-form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.devise-form-container .card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+}
+
+.devise-form-container .card-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 2rem;
+}
+
+// Devise form improvements
+.devise-form-container .form-floating {
+  position: relative;
+}
+
+.devise-form-container .form-floating > .form-control {
+  padding: 1rem 0.75rem;
+  font-size: 1rem;
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+}
+
+.devise-form-container .form-floating > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 1rem 0.75rem;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  color: #6c757d;
+}
+
+.devise-form-container .form-floating > .form-control:focus ~ label,
+.devise-form-container .form-floating > .form-control:not(:placeholder-shown) ~ label {
+  opacity: 0.65;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+// Specific autocomplete fixes for Devise forms
+.devise-form-container .form-floating > .form-control:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.95) inset !important;
+  -webkit-text-fill-color: #212529 !important;
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+  padding-top: 1.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.devise-form-container .form-floating > .form-control:-webkit-autofill ~ label {
+  color: #6c757d;
+  transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  opacity: 0.65;
+}
+
+// Danger zone styling
+.card-header.bg-danger {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+}
+
+// Responsive improvements
+@media (max-width: 768px) {
+  .event-detail-hero .display-4 {
+    font-size: 2rem;
+  }
+
+  .events-hero-section .display-4 {
+    font-size: 2rem;
+  }
+
+  .event-meta .fs-5 {
+    font-size: 1rem !important;
+  }
+
+  .devise-hero-section .display-4 {
+    font-size: 2rem;
+  }
+
+  .devise-form-container {
+    margin: 0 1rem;
+  }
+}
 @import "font-awesome";
+
+// Hero button improvements
+.hero-section .btn {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.hero-section .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-section .btn-light {
+  background: rgba(255, 255, 255, 0.9);
+  color: #667eea;
+  font-weight: 600;
+}
+
+.hero-section .btn-light:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #5a6fd8;
+}
+
+// Steps styling
+.steps-progress {
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #e9ecef;
+      color: #6c757d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .step-label {
+      font-size: 0.875rem;
+      color: #6c757d;
+      font-weight: 500;
+    }
+
+    &.active {
+      .step-number {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .step-label {
+        color: #667eea;
+        font-weight: 600;
+      }
+    }
+
+    &.completed {
+      .step-number {
+        background: #28a745;
+        color: white;
+      }
+
+      .step-label {
+        color: #28a745;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .step-line {
+    width: 100px;
+    height: 2px;
+    background: #e9ecef;
+    margin: 0 1rem;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+
+    &.completed {
+      background: #28a745;
+    }
+  }
+}
+
+// Event option cards
+.event-option-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    border-color: #667eea !important;
+  }
+}
+
+// Gradient backgrounds
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+// Navbar styles
+.navbar {
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .navbar-brand {
+    font-weight: 700;
+    transition: all 0.3s ease;
+
+    img {
+      transition: all 0.3s ease;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  // Responsive logo sizing
+  @media (max-width: 768px) {
+    .navbar-brand {
+      img {
+        height: 50px !important;
+        margin-right: 10px !important;
+      }
+
+      span {
+        font-size: 1.5rem !important;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    .navbar-brand {
+      img {
+        height: 45px !important;
+        margin-right: 8px !important;
+      }
+
+      span {
+        font-size: 1.25rem !important;
+      }
+    }
+  }
+
+  .nav-link {
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    margin: 0 0.25rem;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+  }
+
+  .dropdown-menu {
+    border-radius: 1rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+
+    .dropdown-item {
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+      border-radius: 0.5rem;
+      margin: 0 0.5rem;
+
+      &:hover {
+        background-color: #f8f9ff;
+        transform: translateX(5px);
+      }
+    }
+  }
+
+  .btn-light {
+    border-radius: 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+  }
+}
+
+// Rating display improvements
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+// Reviews index specific styles
+.review-item {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+  }
+}
+
+.rating-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.rating-badge {
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.rating-small {
+  .star-small, .star-empty-small {
+    font-size: 0.8rem;
+    color: #ffc107;
+  }
+
+  .star-empty-small {
+    color: #e9ecef;
+  }
+}
+
+.rating-distribution {
+  .progress {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+  }
+
+  .progress-bar {
+    border-radius: 4px;
+  }
+}
+
+.review-footer {
+  border-top: 1px solid #f8f9fa;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+// View toggle buttons
+.view-toggle {
+  .btn {
+    transition: all 0.3s ease;
+
+    &.active {
+      background-color: #667eea;
+      border-color: #667eea;
+      color: white;
+    }
+  }
+}
+
+// Responsive improvements for reviews
+@media (max-width: 768px) {
+  .rating-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .review-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .event-meta {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+// Footer styles
+.footer {
+  margin-top: auto;
+  flex-shrink: 0;
+
+  .social-links {
+    a {
+      transition: all 0.3s ease;
+      display: inline-block;
+
+      &:hover {
+        transform: translateY(-2px);
+        color: #ffc107 !important;
+      }
+    }
+  }
+
+  .list-unstyled {
+    li {
+      transition: all 0.3s ease;
+
+      a {
+        transition: all 0.3s ease;
+
+        &:hover {
+          color: white !important;
+          transform: translateX(5px);
+        }
+      }
+    }
+  }
+
+  .newsletter-form {
+    .input-group {
+      .form-control {
+        border-radius: 2rem 0 0 2rem;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.7);
+        }
+
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.2);
+          box-shadow: none;
+          color: white;
+        }
+      }
+
+      .btn {
+        border-radius: 0 2rem 2rem 0;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+      }
+    }
+  }
+
+  hr {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+  }
+
+  .text-white-50 {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  .border-white-25 {
+    border-color: rgba(255, 255, 255, 0.25) !important;
+  }
+}
+
+// Responsive footer
+@media (max-width: 992px) and (min-width: 769px) {
+  .footer .container-fluid {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .container-fluid {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+
+    .social-links {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .newsletter-form {
+      margin-top: 1rem;
+    }
+  }
+}
 
 // Your CSS partials
 @import "components/index";

@@ -1,35 +1,118 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+<!-- Edit Profile Hero Section -->
+<div class="devise-hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-white mb-3 hero-title">Editar Perfil</h1>
+          <p class="lead text-white-50">Atualize suas informações da conta</p>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="devise-form-container">
+        <div class="card shadow-lg border-0">
+          <div class="card-header bg-gradient-primary text-white text-center">
+            <h4 class="mb-0 section-title">
+              <i class="fas fa-user-edit me-2"></i>
+              Configurações da Conta
+            </h4>
+          </div>
+          <div class="card-body p-4">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'needs-validation', novalidate: true }) do |f| %>
+              <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <div class="mb-4">
+                  <%= f.label :email, "Endereço de Email", class: "form-label fw-semibold" %>
+                  <%= f.input :email,
+                              required: true,
+                              autofocus: true,
+                              label: false,
+                              placeholder: 'Digite seu email',
+                              wrapper_html: { class: '' },
+                              input_html: { class: 'form-control form-control-lg' } %>
+                </div>
+
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Aguardando confirmação para: <strong><%= resource.unconfirmed_email %></strong>
+                  </div>
+                <% end %>
+
+                <div class="mb-4">
+                  <%= f.label :password, "Nova Senha", class: "form-label fw-semibold" %>
+                  <%= f.input :password,
+                              hint: "deixe em branco se não quiser alterar",
+                              required: false,
+                              label: false,
+                              placeholder: 'Digite nova senha',
+                              wrapper_html: { class: '' },
+                              input_html: { class: 'form-control form-control-lg', autocomplete: "new-password" } %>
+                </div>
+
+                <div class="mb-4">
+                  <%= f.label :password_confirmation, "Confirmar Nova Senha", class: "form-label fw-semibold" %>
+                  <%= f.input :password_confirmation,
+                              required: false,
+                              label: false,
+                              placeholder: 'Confirme nova senha',
+                              wrapper_html: { class: '' },
+                              input_html: { class: 'form-control form-control-lg', autocomplete: "new-password" } %>
+                </div>
+
+                <div class="mb-4">
+                  <%= f.label :current_password, "Senha Atual", class: "form-label fw-semibold" %>
+                  <%= f.input :current_password,
+                              hint: "precisamos da sua senha atual para confirmar as alterações",
+                              required: true,
+                              label: false,
+                              placeholder: 'Digite senha atual',
+                              wrapper_html: { class: '' },
+                              input_html: { class: 'form-control form-control-lg', autocomplete: "current-password" } %>
+                </div>
+              </div>
+
+              <div class="form-actions d-grid">
+                <%= f.button :submit, "Atualizar Conta",
+                    class: 'btn btn-primary btn-lg',
+                    data: { disable_with: 'Atualizando...' } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="card shadow-lg border-0 mt-4">
+          <div class="card-header bg-danger text-white text-center">
+            <h5 class="mb-0 section-title">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              Zona de Perigo
+            </h5>
+          </div>
+          <div class="card-body p-4">
+            <p class="text-muted mb-3">Uma vez que você excluir sua conta, não há como voltar atrás. Por favor, tenha certeza.</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="fw-semibold">Excluir Conta</span>
+              <%= button_to "Excluir Conta",
+                  registration_path(resource_name),
+                  data: { confirm: "Tem certeza? Esta ação não pode ser desfeita.", turbo_confirm: "Tem certeza? Esta ação não pode ser desfeita." },
+                  method: :delete,
+                  class: 'btn btn-outline-danger' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-4">
+          <%= link_to "Voltar aos Eventos", events_path, class: 'btn btn-outline-secondary' %>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>

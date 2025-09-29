@@ -1,0 +1,39 @@
+<div class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-100">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4 hero-title"><%= t('home.welcome') %></h1>
+        <p class="lead mb-4"><%= t('home.description') %></p>
+        <div class="d-flex gap-3">
+          <%= link_to t('home.explore_events'), events_path, class: 'btn btn-primary btn-lg shadow-lg' %>
+          <% if user_signed_in? %>
+            <%= link_to t('home.add_review'), new_review_step1_path, class: 'btn btn-light btn-lg shadow-lg fw-bold' %>
+          <% else %>
+            <%= link_to t('home.register'), new_user_registration_path, class: 'btn btn-light btn-lg shadow-lg fw-bold' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <%= link_to events_path do %>
+          <%= image_tag('wowdience_logo.png', alt: 'Wowdience Logo', class: 'img-fluid hero-logo') %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+
+  .hero-logo {
+    max-width: 400px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+  }
+
+  .min-vh-100 {
+    min-height: 100vh;
+  }
+</style>

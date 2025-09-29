@@ -1,38 +1,81 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "wowdience_logo.png", style: "transform: scale(3);" %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary shadow-lg">
+  <div class="container">
+    <%= link_to root_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "wowdience_logo.png", style: "height: 60px; margin-right: 15px;" %>
+      <span class="fw-bold fs-3 text-white footer-brand">Wowdience</span>
     <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <%= link_to t('navigation.events'), events_path, class: "nav-link text-white fw-medium px-3" %>
+        </li>
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+          <li class="nav-item">
+            <%= link_to t('navigation.add_review'), new_review_step1_path, class: "nav-link text-white fw-medium px-3" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+            <%= link_to t('navigation.my_reviews'), reviews_path, class: "nav-link text-white fw-medium px-3" %>
           </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+        <% end %>
+      </ul>
+
+      <ul class="navbar-nav">
+        <!-- Language Toggle -->
+        <li class="nav-item dropdown me-3">
+          <a href="#" class="nav-link dropdown-toggle text-white d-flex align-items-center" id="languageDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-globe fa-lg me-2"></i>
+            <span class="fw-medium">
+              <%= I18n.locale == :'pt-BR' ? 'Português' : 'English' %>
+            </span>
           </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          <div class="dropdown-menu dropdown-menu-end shadow-lg border-0" aria-labelledby="languageDropdown">
+            <%= link_to switch_language_path('pt-BR'), class: "dropdown-item d-flex align-items-center #{'active' if I18n.locale == :'pt-BR'}" do %>
+              <i class="fas fa-flag me-2 text-success"></i>
+              Português
+            <% end %>
+            <%= link_to switch_language_path('en'), class: "dropdown-item d-flex align-items-center #{'active' if I18n.locale == :en}" do %>
+              <i class="fas fa-flag me-2 text-primary"></i>
+              English
+            <% end %>
+          </div>
+        </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-white d-flex align-items-center" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-circle fa-lg me-2"></i>
+              <span class="fw-medium"><%= current_user.first_name.present? ? current_user.first_name : current_user.email %></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end shadow-lg border-0" aria-labelledby="navbarDropdown">
+              <%= link_to edit_user_registration_path, class: "dropdown-item d-flex align-items-center" do %>
+                <i class="fas fa-user-edit me-2 text-primary"></i>
+                <%= t('navigation.edit_profile') %>
+              <% end %>
+              <%= link_to reviews_path, class: "dropdown-item d-flex align-items-center" do %>
+                <i class="fas fa-star me-2 text-warning"></i>
+                <%= t('navigation.my_reviews') %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item d-flex align-items-center text-danger", data: {turbo_method: :delete} do %>
+                <i class="fas fa-sign-out-alt me-2"></i>
+                <%= t('navigation.logout') %>
+              <% end %>
             </div>
           </li>
         <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            <%= link_to t('navigation.login'), new_user_session_path, class: "nav-link text-white fw-medium px-3" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t('navigation.register'), new_user_registration_path, class: "btn btn-light text-primary fw-medium px-4 ms-2" %>
           </li>
         <% end %>
       </ul>
     </div>
   </div>
-</div>
+</nav>

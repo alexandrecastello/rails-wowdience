@@ -31,3 +31,146 @@
 
 en:
   hello: "Hello world"
+
+  # Date and time translations
+  date:
+    order:
+      - :month
+      - :day
+      - :year
+    formats:
+      default: "%m/%d/%Y"
+      short: "%b %d"
+      long: "%B %d, %Y"
+    day_names: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    abbr_day_names: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    month_names: [null, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    abbr_month_names: [null, "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+  time:
+    formats:
+      default: "%m/%d/%Y %I:%M %p"
+      short: "%m/%d/%Y %I:%M %p"
+      long: "%B %d, %Y at %I:%M %p"
+    am: "AM"
+    pm: "PM"
+
+  # Application translations
+  app:
+    name: "Wowdience"
+    tagline: "Discover amazing events and share your experiences"
+
+  # Navigation
+  navigation:
+    events: "Events"
+    add_review: "Add Review"
+    my_reviews: "My Reviews"
+    login: "Login"
+    register: "Register"
+    edit_profile: "Edit Profile"
+    logout: "Logout"
+    back: "Back"
+    cancel: "Cancel"
+    save: "Save"
+    edit: "Edit"
+    delete: "Delete"
+    create: "Create"
+    update: "Update"
+    view_details: "View Details"
+
+  # Home page
+  home:
+    welcome: "Welcome to Wowdience"
+    description: "Discover amazing events and share your experiences with the community. Rate shows, read reviews and find your next unforgettable experience."
+    explore_events: "Explore Events"
+    add_review: "Add Review"
+    register: "Register"
+
+  # Events
+  events:
+    title: "Discover Amazing Events"
+    subtitle: "Find the best shows, concerts and festivals. Read reviews from real people and share your own experiences."
+    share_experience: "Share an Experience"
+    all_events: "All Events"
+    event_details: "Event Details"
+    create_event: "Create Event"
+    edit_event: "Edit Event"
+    new_event: "Create New Event"
+    no_events: "No events found"
+    no_events_message: "Be the first to create an amazing event and share it with the community!"
+    create_first_event: "Create Your First Event"
+    register_to_create: "Register to Create Events"
+    event_count: "event available"
+    event_count_plural: "events available"
+    still_no_reviews: "No reviews yet"
+    based_on_reviews: "review"
+    based_on_reviews_plural: "reviews"
+    still_no_reviews_hero: "No reviews yet - be the first to rate!"
+
+  # Event form
+  events_form:
+    event_name: "Event Name"
+    event_name_placeholder: "Enter your event name"
+    event_date: "Event Date"
+    event_location: "Event Location"
+    select_existing_location: "Select an existing location"
+    or_create_new_location: "Or create a new location"
+    event_description: "Event Description"
+    event_description_placeholder: "Describe your event..."
+    saving: "Saving..."
+
+  # Reviews
+  reviews:
+    add_review: "Add New Review"
+    step1_title: "Step 1: Choose an event to review or create a new one"
+    step2_title: "Step 2: Write your review"
+    choose_event: "Choose Event"
+    write_review: "Write Review"
+    your_review: "Your Review"
+    leave_review: "Leave a Review"
+    all_reviews: "All Reviews"
+    rating: "Rating (0.5-5.0)"
+    rating_placeholder: "Enter rating from 0.5 to 5.0"
+    rating_help: "Rate this event from 0.5 (bad) to 5.0 (excellent)"
+    comment: "Your Review"
+    comment_placeholder: "Share your experience with this event..."
+    comment_help: "Minimum 10 characters required"
+    submit_review: "Submit Review"
+    update_review: "Update Review"
+    edit_review: "Edit"
+    read_more: "Read more"
+    read_less: "Read less"
+    reviewed_on: "Reviewed on"
+    login_to_review: "Please login or register to leave a review."
+    login: "login"
+    register: "register"
+
+  # Language toggle
+  language:
+    current: "Current Language"
+    switch_to: "Switch to"
+    portuguese: "Português"
+    english: "English"
+
+  # Models
+  activerecord:
+    models:
+      event: "Event"
+      review: "Review"
+      user: "User"
+      location: "Location"
+      artist: "Artist"
+    attributes:
+      event:
+        name: "Event Name"
+        start_date: "Event Date"
+        description: "Description"
+        location: "Location"
+      review:
+        rating: "Rating"
+        comment: "Comment"
+      user:
+        first_name: "First Name"
+        last_name: "Last Name"
+        email: "Email"
+        phone: "Phone"

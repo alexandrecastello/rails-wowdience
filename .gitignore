@@ -33,3 +33,6 @@
 
 .DS_Store
 .byebug_history
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

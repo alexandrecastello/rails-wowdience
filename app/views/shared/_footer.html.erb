@@ -1,0 +1,102 @@
+<footer class="footer bg-gradient-primary text-white py-5 mt-5">
+  <div class="container-fluid px-5">
+    <div class="row">
+      <!-- Brand Section -->
+      <div class="col-lg-4 mb-4">
+        <div class="d-flex align-items-center mb-3">
+          <%= image_tag "wowdience_logo.png", style: "height: 50px; margin-right: 12px;" %>
+          <h5 class="fw-bold mb-0 footer-brand">Wowdience</h5>
+        </div>
+        <p class="text-white-50 mb-3">
+          Descubra eventos incríveis, compartilhe suas experiências e conecte-se com outros amantes da música.
+          Sua plataforma definitiva para avaliações e recomendações de eventos.
+        </p>
+        <div class="social-links">
+          <a href="#" class="text-white me-3" title="Facebook">
+            <i class="fab fa-facebook-f fa-lg"></i>
+          </a>
+          <a href="#" class="text-white me-3" title="Twitter">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+          <a href="#" class="text-white me-3" title="Instagram">
+            <i class="fab fa-instagram fa-lg"></i>
+          </a>
+          <a href="#" class="text-white" title="LinkedIn">
+            <i class="fab fa-linkedin-in fa-lg"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="fw-bold mb-3 section-title">Links Rápidos</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <%= link_to "Eventos", events_path, class: "text-white-50 text-decoration-none" %>
+          </li>
+          <% if user_signed_in? %>
+            <li class="mb-2">
+              <%= link_to "Adicionar Avaliação", new_review_step1_path, class: "text-white-50 text-decoration-none" %>
+            </li>
+            <li class="mb-2">
+              <%= link_to "Minhas Avaliações", reviews_path, class: "text-white-50 text-decoration-none" %>
+            </li>
+          <% end %>
+          <li class="mb-2">
+            <%= link_to "Sobre Nós", "#", class: "text-white-50 text-decoration-none" %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Support -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 class="fw-bold mb-3 section-title">Suporte</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <%= link_to "Central de Ajuda", "#", class: "text-white-50 text-decoration-none" %>
+          </li>
+          <li class="mb-2">
+            <%= link_to "Contato", "#", class: "text-white-50 text-decoration-none" %>
+          </li>
+          <li class="mb-2">
+            <%= link_to "Política de Privacidade", "#", class: "text-white-50 text-decoration-none" %>
+          </li>
+          <li class="mb-2">
+            <%= link_to "Termos de Serviço", "#", class: "text-white-50 text-decoration-none" %>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="col-lg-4 mb-4">
+        <h6 class="fw-bold mb-3 section-title">Mantenha-se Atualizado</h6>
+        <p class="text-white-50 mb-3">
+          Inscreva-se em nossa newsletter para os últimos eventos e avaliações.
+        </p>
+        <div class="newsletter-form">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Digite seu email" aria-label="Email">
+            <button class="btn btn-light text-primary fw-medium" type="button">
+              Inscrever-se
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <hr class="my-4 border-white-25">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <p class="text-white-50 mb-0 small">
+          © <%= Date.current.year %> Wowdience. Todos os direitos reservados.
+        </p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p class="text-white-50 mb-0 small">
+          Feito com <i class="fas fa-heart text-danger"></i> para amantes da música
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
