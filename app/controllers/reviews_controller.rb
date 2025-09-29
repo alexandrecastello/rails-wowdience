@@ -107,6 +107,6 @@ class ReviewsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :start_date, :description, :location_id, :location_name)
+    params.require(:event).permit(:name, :start_date, :description, :location_id)
   end
 end
