@@ -6,6 +6,9 @@ class Event < ApplicationRecord
   has_many :reviews
   has_many :users, through: :reviews
 
+  validates :name, presence: true
+  validates :start_date, presence: true
+
   def average_rating
     return 0 if reviews.empty?
     reviews.average(:rating).round(1)
