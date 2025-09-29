@@ -174,10 +174,10 @@
               <div class="d-flex align-items-center mb-3">
                 <div class="me-3">
                   <div class="rating-small">
-                    <% review.rating.times do %>
+                    <% review.rating.to_i.times do %>
                       <span class="star-small">★</span>
                     <% end %>
-                    <% (10 - review.rating).times do %>
+                    <% (10 - review.rating.to_i).times do %>
                       <span class="star-empty-small">☆</span>
                     <% end %>
                   </div>
