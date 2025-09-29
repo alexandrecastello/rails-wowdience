@@ -79,6 +79,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  
+  # RSpec for testing
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
+  gem "shoulda-matchers"
 end
 
 gem 'concurrent-ruby', '1.3.4'
