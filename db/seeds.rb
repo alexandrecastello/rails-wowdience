@@ -111,42 +111,42 @@ puts "👥 Created users"
 events = [
   {
     name: "Coldplay - Music of the Spheres World Tour",
-    start_date: 1.month.from_now,
+    start_date: 2.months.ago,
     event_type: concert_type,
     location: Location.find_by(name: "Allianz Parque"),
     description: "Experience the magic of Coldplay's latest world tour with spectacular visuals and unforgettable performances."
   },
   {
     name: "Taylor Swift - The Eras Tour",
-    start_date: 2.months.from_now,
+    start_date: 1.month.ago,
     event_type: concert_type,
     location: Location.find_by(name: "Espaço Unimed"),
     description: "Join Taylor Swift for an incredible journey through all her musical eras in this spectacular show."
   },
   {
     name: "Rock in Rio 2024",
-    start_date: 3.months.from_now,
+    start_date: 3.months.ago,
     event_type: festival_type,
     location: Location.find_by(name: "Vibra São Paulo"),
     description: "The biggest music festival in Brazil returns with the best national and international artists."
   },
   {
     name: "Ed Sheeran - Mathematics Tour",
-    start_date: 1.week.from_now,
+    start_date: 2.weeks.ago,
     event_type: concert_type,
     location: Location.find_by(name: "Teatro Municipal"),
     description: "An intimate acoustic performance by Ed Sheeran featuring songs from his latest album."
   },
   {
     name: "Adele - 30 Tour",
-    start_date: 2.weeks.from_now,
+    start_date: 1.week.ago,
     event_type: concert_type,
     location: Location.find_by(name: "Espaço Unimed"),
     description: "Experience Adele's powerful vocals and emotional performances in this unforgettable concert."
   },
   {
     name: "Ivete Sangalo - Clareou",
-    start_date: 1.month.from_now,
+    start_date: 3.weeks.ago,
     event_type: concert_type,
     location: Location.find_by(name: "Sambódromo"),
     description: "A festa mais animada do Brasil! Ivete Sangalo traz seu show 'Clareou' com os maiores sucessos da música brasileira."
